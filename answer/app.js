@@ -6,6 +6,7 @@ var   express = require('express')
     , cookieParser = require('cookie-parser')
     , cookieSession = require('cookie-session')
     , errorhandler = require('errorhandler')
+    , csurf = require('csurf')
     , routes = require('./routes')
     , http = require('http')
     , path = require('path');
@@ -25,6 +26,11 @@ app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2']
 }));
+app.use(csurf({cookie: true}));
+app.use(function(req, res, next) {
+  res.cookie('XSRF-TOKEN', req.csrfToken());
+  next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only

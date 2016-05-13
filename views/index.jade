@@ -5,7 +5,7 @@ block content
     div.span12
       form(ng-submit="submit()")
         fieldset
-          legend CSRF
+          legend Legitimate web app
           label(for="name") POST some text
           input(type="text", id="name", ng-model="value", name="name")
           br
@@ -16,4 +16,4 @@ block content
         strong Yeah!
         span  You've sent 
           strong {{answer}} 
-          | to the server and back. With CSRF enabled! Well done.
+          | to the server and back. With CSRF enabled? I hope so!
